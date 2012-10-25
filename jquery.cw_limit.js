@@ -48,6 +48,14 @@
 		        	holder.append(settings.text_before + ' <strong>' + left.toString() + '</strong> ' + settings.text_after);
 		        }
 		        
+		        if(typeof settings.custom_class !== 'undefined' && settings.custom_class != '') {
+		        	holder.addClass(settings.custom_class);
+		        }
+		        
+		        if(typeof settings.custom_id !== 'undefined' && settings.custom_id != '') {
+		        	holder.attr('id', ''+settings.custom_id);
+		        }
+		        
 		        var holder_counter = holder.children('strong:first');
 		        
 		        $(this).data('holder', holder);
