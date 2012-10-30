@@ -3,9 +3,14 @@
 	var methods = {
 		init : function( options ) {
 			return this.each(function(){
+				var val;
 				var element_tag = ($(this)[0].tagName).toLowerCase();
+				var holder;
+				var cur = 0;
+				var left;
+				var holder_counter;
+				
 				if(element_tag == 'input') {
-					var element_type = ($(this).attr('type')).toLowerCase();
 					if($(this).attr('type') != 'text') {
 						$(this).after('<span>The selected element can\'t be limited !</span>');
 						return;
@@ -15,29 +20,26 @@
 					return;
 				}
 				
-				var holder;
 				var settings = $.extend({
-					'animation' 			: 'fade',
-					'animation_speed' 		: 600,
-					'afterChange' 			: function(){return;},
-					'beforeChange' 			: function(){return;},
-					'counter_holder' 		: false,
-					'counter_font_color'	: '#000000',
+					'animation'				: 'fade',
+					'animation_speed'		: 600,
+					'afterChange'			: function(){return;},
+					'beforeChange'			: function(){return;},
+					'counter_holder'		: false,
+					'counter_font_color'	: '#BB2222',
 					'counter_font_size'		: '16px',
-					'custom_class' 			: '',
-					'custom_id' 			: '',
-					'max' 					: 200,
-					'text_before' 			: 'There is',
-					'text_after' 			: 'characters left'
-			    }, options);
+					'custom_class'			: '',
+					'max'					: 200,
+					'text_before'			: 'There is',
+					'text_after'			: 'characters left'
+				}, options);
 			    
-				var val = $(this).attr('value');
-				var cur = 0;
+				val = $(this).attr('value');
 				if(val) {
 					cur = val.length;
 				}
 				
-				var left = settings.max-cur;
+				left = settings.max-cur;
 				
 		        if(!settings.counter_holder) {
 		        	$(this).after('<span class="cw_counter">'+ settings.text_before + ' <strong>' + left.toString() + '</strong> ' + settings.text_after + '</span>');
@@ -52,11 +54,7 @@
 		        	holder.addClass(settings.custom_class);
 		        }
 		        
-		        if(typeof settings.custom_id !== 'undefined' && settings.custom_id != '') {
-		        	holder.attr('id', ''+settings.custom_id);
-		        }
-		        
-		        var holder_counter = holder.children('strong:first');
+		        holder_counter = holder.children('strong:first');
 		        
 		        $(this).data('holder', holder);
 		        $(this).data('holder_counter', holder_counter);
@@ -88,6 +86,7 @@
 		            
 		            change_text(0);
 		            
+		            // stop all current animations and reset the holder to its defaults
 		            holder_counter.stop(true).css('opacity', 1);
 		            holder_counter.stop(true).css('font-size', settings.counter_font_size);
 		            
@@ -95,6 +94,7 @@
 		            
 		            switch(settings.animation) {
 		            	case 'fade':
+		            		// animating opacity of the element
 				            holder_counter.animate({
 				            	'opacity' : 0
 				            }, settings.animation_speed/2, function(){
@@ -107,6 +107,7 @@
 			            break;
 			            
 			            case 'shrink':
+			            	// animating the font-size of the element
 				            holder_counter.animate({
 				            	'font-size' : 0
 				            }, settings.animation_speed/2, function(){
@@ -119,6 +120,7 @@
 			            break;
 			            
 			            case 'grow':
+			            	// animating the font-size of the element
 				            holder_counter.animate({
 				            	'font-size' : parseInt(settings.counter_font_size)*2 + 'px'
 				            }, settings.animation_speed/2, function(){
@@ -129,25 +131,35 @@
 				            	'font-size' : settings.counter_font_size
 				            }, settings.animation_speed/2);
 			            break;
+			            
+			            default:
+			            	// catch everything else
+			            break;
 		            }
 		            
 		            settings.afterChange();
+		            
 		            return this;
 		        });
 		        
+		        // sets status for the selected element
+		        // that it is already initialized
 		        $(this).data('status', 1);
 			});
 		},
 		show : function( ) {
+			// show the holder using the default functionality provided by jQuery
 			$(this).data('holder').show();
 		},
 		hide : function( ) {
+			// hide the holder using the default functionality provided by jQuery
 			$(this).data('holder').hide();
 		},
 		destroy : function( ) {
 			return this.each(function(){
-				$(window).unbind('.cw_counter');
-				$(this).data('holder').remove();
+				// remove the element from the created instance of the plugin
+				$(window).unbind($(this));
+				// unset all data elements for the element
 				$(this).removeData('holder');
 				$(this).removeData('holder_counter');
 				$(this).removeData('status');
