@@ -18,9 +18,9 @@ $('#element_id').cw_limit();
 	* 'grow'
 
 * animation_speed - This determine how long the animation will be in milliseconds.
-	> ```
-	> animation_speed: 600 // default
-	> ```
+	```
+	animation_speed: 600 // default
+	```
 
 * afterChange - Set a custom function to be called when the text is limited and animation is finished.
 
@@ -29,48 +29,48 @@ $('#element_id').cw_limit();
 * counter_holder - You can select a holder for the limiter counter. The values of this option can be either a class or id of an container element. If there is not presented such holder, the plugin will create automatically a holder after the selected element.
 
 * counter_font_color - The color of the text representing the characters remaining.
-	> ```
-	> counter_font_color: '#BB2222' // default
-	> ```
+	```
+	counter_font_color: '#BB2222' // default
+	```
 
 * counter_font_size - The font size of the text representing the characters remaining.
-	> ```
-	> counter_font_size: '16px' // default
-	> ```
+	```
+	counter_font_size: '16px' // default
+	```
 
 * custom_class - Custom class to be added for the created/used holder box.
 
 * max - Maximum number of allowed characters.
-	> ```
-	> max: 200 // default
-	> ```
+	```
+	max: 200 // default
+	```
 
 * text_before - Text to be added before the counter text.
-	> ```
-	> text_before: 'There is' // default
-	> ```
+	```
+	text_before: 'There is' // default
+	```
 
 * text_after - Text to be added after the counter text.
-	> ```
-	> text_after: 'characters left' // default
-	> ```
+	```
+	text_after: 'characters left' // default
+	```
 	
 ##Available methods:
 
 * show - This will show the counter holder using the default functionality provided by jQuery
-	> ```javascirpt
-	> $('#element_id').cw_limit('show');
-	> ```
+	```javascirpt
+	$('#element_id').cw_limit('show');
+	```
 	
 * hide - This will hide the counter holder using the default functionality provided by jQuery
-	> ```javascirpt
-	> $('#element_id').cw_limit('hide');
-	> ```
+	```javascirpt
+	$('#element_id').cw_limit('hide');
+	```
 
 * destroy - This will destroy the instanse for the selected element
-	> ```javascirpt
-	> $('#element_id').cw_limit('destroy');
-	> ```
+	```javascirpt
+	$('#element_id').cw_limit('destroy');
+	```
 
 
 ##Everything in one place
