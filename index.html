@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link href='https://fonts.googleapis.com/css?family=Architects+Daughter' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="stylesheets/pygment_trac.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print" />
+
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <title>Jquery.cw limit by SlavVv</title>
+  </head>
+
+  <body>
+    <header>
+      <div class="inner">
+        <h1>Jquery.cw limit</h1>
+        <h2>Little jQuery plugin for limiting the text inside input text field or a textarea.</h2>
+        <a href="https://github.com/SlavVv/jquery.cw_limit" class="button"><small>View project on</small>GitHub</a>
+      </div>
+    </header>
+
+    <div id="content-wrapper">
+      <div class="inner clearfix">
+        <section id="main-content">
+          <h1>jquery.cw_limit</h1>
+
+<p>Little jQuery plugin for limiting the text inside input text field or a textarea.</p>
+
+<h3>Simple usage</h3>
+
+<div class="highlight"><pre><span class="c1">// bind the limiter to textarea or input type text</span>
+<span class="nx">$</span><span class="p">(</span><span class="s1">'#element_id'</span><span class="p">).</span><span class="nx">cw_limit</span><span class="p">();</span>
+</pre></div>
+
+<h2>Available options/settings:</h2>
+
+<ul>
+<li>
+<p>animation - With this option you can set some simple animation for the little counter box that appears after the selected element. Available values:</p>
+
+<ul>
+<li>'fade' <code>default</code>
+</li>
+<li>'shrink'</li>
+<li>'grow'</li>
+</ul>
+</li>
+<li>
+<p>animation_speed - This determine how long the animation will be in milliseconds.</p>
+
+<pre><code>animation_speed: 600 // default
+</code></pre>
+</li>
+<li><p>afterChange - Set a custom function to be called when the text is limited and animation is finished.</p></li>
+<li><p>beforeChange - Set a custom function to be called just before the changing of the text.</p></li>
+<li><p>counter_holder - You can select a holder for the limiter counter. The values of this option can be either a class or id of an container element. If there is not presented such holder, the plugin will create automatically a holder after the selected element.</p></li>
+<li>
+<p>counter_font_color - The color of the text representing the characters remaining.</p>
+
+<pre><code>counter_font_color: '#BB2222' // default
+</code></pre>
+</li>
+<li>
+<p>counter_font_size - The font size of the text representing the characters remaining.</p>
+
+<pre><code>counter_font_size: '16px' // default
+</code></pre>
+</li>
+<li><p>custom_class - Custom class to be added for the created/used holder box.</p></li>
+<li>
+<p>max - Maximum number of allowed characters.</p>
+
+<pre><code>max: 200 // default
+</code></pre>
+</li>
+<li>
+<p>text_before - Text to be added before the counter text.</p>
+
+<pre><code>text_before: 'There is' // default
+</code></pre>
+</li>
+<li>
+<p>text_after - Text to be added after the counter text.</p>
+
+<pre><code>text_after: 'characters left' // default
+</code></pre>
+</li>
+</ul><h2>Available methods:</h2>
+
+<ul>
+<li>
+<p>show - This will show the counter holder using the default functionality provided by jQuery</p>
+
+<pre lang="javascirpt"><code>$('#element_id').cw_limit('show');
+</code></pre>
+</li>
+<li>
+<p>hide - This will hide the counter holder using the default functionality provided by jQuery</p>
+
+<pre lang="javascirpt"><code>$('#element_id').cw_limit('hide');
+</code></pre>
+</li>
+<li>
+<p>destroy - This will destroy the instanse for the selected element</p>
+
+<pre lang="javascirpt"><code>$('#element_id').cw_limit('destroy');
+</code></pre>
+</li>
+</ul><h2>Everything in one place</h2>
+
+<div class="highlight"><pre><span class="nx">$</span><span class="p">(</span><span class="s1">'#textarea_field'</span><span class="p">).</span><span class="nx">cw_limit</span><span class="p">({</span>
+    <span class="s1">'animation'</span>             <span class="o">:</span> <span class="s1">'fade'</span><span class="p">,</span>
+    <span class="s1">'animation_speed'</span>       <span class="o">:</span> <span class="mi">400</span><span class="p">,</span>
+    <span class="s1">'afterChange'</span>           <span class="o">:</span> <span class="kd">function</span><span class="p">(){</span><span class="k">return</span><span class="p">;},</span>
+    <span class="s1">'beforeChange'</span>          <span class="o">:</span> <span class="kd">function</span><span class="p">(){</span><span class="k">return</span><span class="p">;},</span>
+    <span class="s1">'counter_holder'</span>        <span class="o">:</span> <span class="s1">'#my_holder'</span><span class="p">,</span>
+    <span class="s1">'counter_font_color'</span>    <span class="o">:</span> <span class="s1">'#FF8822'</span><span class="p">,</span>
+    <span class="s1">'counter_font_size'</span>     <span class="o">:</span> <span class="s1">'18px'</span><span class="p">,</span>
+    <span class="s1">'custom_class'</span>          <span class="o">:</span> <span class="s1">'my_custom_class'</span><span class="p">,</span>
+    <span class="s1">'max'</span>                   <span class="o">:</span> <span class="mi">200</span><span class="p">,</span>
+    <span class="s1">'text_before'</span>           <span class="o">:</span> <span class="s1">'Here it is'</span><span class="p">,</span>
+    <span class="s1">'text_after'</span>            <span class="o">:</span> <span class="s1">'characters left'</span>
+<span class="p">});</span>
+</pre></div>
+
+<h2>Feel free to add a comment or to give me some advices and ideas.</h2>
+        </section>
+
+        <aside id="sidebar">
+          <a href="https://github.com/SlavVv/jquery.cw_limit/zipball/master" class="button">
+            <small>Download</small>
+            .zip file
+          </a>
+          <a href="https://github.com/SlavVv/jquery.cw_limit/tarball/master" class="button">
+            <small>Download</small>
+            .tar.gz file
+          </a>
+
+          <p class="repo-owner"><a href="https://github.com/SlavVv/jquery.cw_limit"></a> is maintained by <a href="https://github.com/SlavVv">SlavVv</a>.</p>
+
+          <p>This page was generated by <a href="pages.github.com">GitHub Pages</a> using the Architect theme by <a href="http://twitter.com/jasonlong">Jason Long</a>.</p>
+        </aside>
+      </div>
+    </div>
+
+  
+  </body>
+</html>
